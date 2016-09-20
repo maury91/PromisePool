@@ -1,0 +1,39 @@
+{
+  "name": "simple-promise-pool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "babel": "gulp babel",
+    "eslint": "eslint src --fix",
+    "prepublish": "eslint src && gulp babel",
+    "start": "node build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maury91/PromisePool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maury91/PromisePool/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-syntax-flow": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.14.0",
+    "babel-plugin-transform-flow-strip-types": "^6.14.0",
+    "eslint": "^3.4.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-sourcemaps": "^1.6.0"
+  },
+  "homepage": "https://github.com/maury91/PromisePool#readme"
+}
