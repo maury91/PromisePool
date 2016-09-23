@@ -49,23 +49,26 @@ function execute (executor: executeObject): QuerablePromise {
 }
 
 export default function PromisePool (promisesRaw: Array<Function<Promise>>, concurrency = 2, noError = true): Promise<Array<number|boolean>> {
-  const promises = promisesRaw.map((promise: Function<Promise>, index: number) => {promise, index})
+  const promises = promisesRaw.map((promise: Function<Promise>, index: number) => {
+    return {
+      promise,
+      index
+    }
+  })
   const result = new Array(promisesRaw.length).fill(false)
   return new Promise(function (resolve, reject) {
-    let noErrors = true
     let inExecution = promises.splice(0, concurrency).map(execute);
     (async function executePool () {
       try {
         await Promise.race(inExecution)
       } catch (err) {
-        noErrors = false
         if (!noError) {
           return reject()
         }
       }
       const resolved = inExecution.filter(prom => prom.isResolved())
       for (const promise of resolved) {
-        result[promise.info[0]] = promise.executionTime()
+        result[ promise.info[ 0 ] ] = promise.executionTime()
       }
       inExecution = inExecution.filter(prom => !prom.isFulfilled())
       const toExtract = Math.min(concurrency - inExecution.length, promises.length)
